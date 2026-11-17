@@ -10,13 +10,13 @@ RUN apk add --no-cache libc6-compat openssl \
 FROM base AS deps
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
-RUN --mount=type=cache,id=cacheKey-zende-npm-cache,target=/root/.npm
+RUN 
 
 FROM base AS prod-deps
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
 # prisma CLI is required at container boot for `migrate deploy` (devDependency in package.json).
-RUN --mount=type=cache,id=cacheKey-zende-npm-cache,target=/root/.npm \
+RUN 
     npm ci --omit=dev --ignore-scripts \
     && npm install prisma@6.19.3 --no-save \
     && npx prisma generate
