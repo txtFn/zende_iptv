@@ -16,8 +16,7 @@ FROM base AS prod-deps
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
 # prisma CLI is required at container boot for `migrate deploy` (devDependency in package.json).
-RUN 
-    npm ci --omit=dev --ignore-scripts \
+RUN npm ci --omit=dev --ignore-scripts \
     && npm install prisma@6.19.3 --no-save \
     && npx prisma generate
 
